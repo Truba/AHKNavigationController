@@ -72,7 +72,9 @@
         // Disable pop gesture in two situations:
         // 1) when the pop animation is in progress
         // 2) when user swipes quickly a couple of times and animations don't have time to be performed
-        return [self.viewControllers count] > 1 && !self.isDuringPushAnimation;
+        // 3) when hidesBackButton is YES
+        BOOL hidesBackButton = self.topViewController.navigationItem.hidesBackButton;
+        return [self.viewControllers count] > 1 && !self.isDuringPushAnimation && !hidesBackButton;
     } else {
         // default value
         return YES;
